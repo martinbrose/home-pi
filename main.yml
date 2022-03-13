@@ -34,6 +34,10 @@
       ansible.builtin.import_tasks: tasks/home-assistant.yml
       when: home_assistant_enable
 
+    - name: Set up Home Assistant Supervised.
+      ansible.builtin.import_tasks: tasks/home-assistant-supervised.yml
+      when: home_assistant_supervisor_enable
+
     - name: Set up AirConnect.
       ansible.builtin.import_tasks: tasks/airconnect.yml
       when: airconnect_enable

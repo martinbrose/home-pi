@@ -1,0 +1,58 @@
+---
+- name: Create Home Assistant folder on Pi.
+  ansible.builtin.file:
+    path: "{{ config_dir }}/home-assistant"
+    state: directory
+    mode: 0755
+  become: false
+
+- name: Ensure dependencies are installed (Debian).
+  ansible.builtin.apt:
+    name:
+      - jq
+      - wget
+      - curl
+      - udisks2
+      - libglib2.0-bin
+      - network-manager
+      - dbus
+    state: present
+  when: ansible_facts.os_family == "Debian"
+
+- name: Ensure dependencies are installed (Archlinux).
+  community.general.pacman:
+    name:
+      - jq
+      - wget
+      - curl
+      - udisks2
+      - libglib2.0-bin
+      - network-manager
+      - dbus
+    state: present
+  when: ansible_facts.os_family == "Archlinux"
+
+- name: Install prerequisites for Ansible to install .deb via apt module
+  apt:
+    name:
+    - xz-utils
+
+- name: Download Home Assisistant Supervised Debian Package.
+  ansible.builtin.get_url:
+    url: "https://github.com/home-assistant/os-agent/releases/download/{{home_assistant_os_agent_version}}/os-agent_{{home_assistant_os_agent_version}}_linux_{{ansible_architecture}}.deb"
+    dest: /tmp/os-agent.deb
+    mode: 0775
+
+- name: Install Home Assisistant Supervised Debian Package.
+  apt:
+    deb: /tmp/os-agent.deb
+
+- name: Download Home Assisistant Supervised Debian Package.
+  ansible.builtin.get_url:
+    url: https://github.com/home-assistant/supervised-installer/releases/download/{{home_assistant_supervisor_version}}/homeassistant-supervised.deb
+    dest: /tmp/homeassistant-supervised.deb
+    mode: 0775
+
+- name: Install Home Assisistant Supervised Debian Package.
+  apt:
+    deb: /tmp/homeassistant-supervised.deb
