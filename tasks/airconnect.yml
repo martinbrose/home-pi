@@ -1,0 +1,17 @@
+---
+- name: Synchronize AirConnect directory.
+  ansible.posix.synchronize:
+    src: airconnect
+    dest: "{{ config_dir }}/"
+    delete: false
+    recursive: true
+    perms: false
+  become: false
+
+# TODO: The first time this playbook is run, the `pi` user may not be added
+# to the `docker` group, so this task may fail.
+- name: Ensure AirConnect is running.
+  community.docker.docker_compose:
+    project_src: "{{ config_dir }}/airconnect/"
+    build: false
+  become: false

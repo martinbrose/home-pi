@@ -1,0 +1,7 @@
+---
+- name: Restart airconnect
+  community.docker.docker_compose:
+    project_src: "{{ config_dir }}/airconnect/"
+    build: false
+    restarted: true
+  become: false

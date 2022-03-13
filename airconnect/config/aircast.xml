@@ -1,0 +1,10 @@
+<aircast>
+    <common>
+        <enabled>1</enabled>
+        <max_volume>100</max_volume>
+        <codec>flac</codec>
+        <latency>1000:2000</latency>
+        <metadata>1</metadata>
+        <artwork></artwork>
+    </common>
+</aircast>

@@ -1,0 +1,9 @@
+---
+# Location where configuration files will be stored.
+config_dir: '~'
+
+# Home Assistant configuation
+home_assistant_enable: true
+
+# Enable AirConnect
+airconnect_enable: true

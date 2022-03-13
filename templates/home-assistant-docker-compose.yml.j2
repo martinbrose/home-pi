@@ -1,0 +1,16 @@
+# {{ ansible_managed }}
+---
+
+version: '3'
+
+# More information at https://www.home-assistant.io/installation/raspberrypi
+services:
+    homeassistant:
+        container_name: home-assistant
+        image: "homeassistant/home-assistant"
+        volumes:
+        - './etc-home-assistant:/etc/home-assistant/config'
+        - '/etc/localtime:/etc/localtime:ro'
+        restart: unless-stopped
+        privileged: true
+        network_mode: host

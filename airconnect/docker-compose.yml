@@ -1,0 +1,18 @@
+# {{ ansible_managed }}
+---
+
+version: '3'
+
+# More information at https://www.home-assistant.io/installation/raspberrypi
+services:
+    airconnect:
+        container_name: airconnect
+        image: "1activegeek/airconnect"
+        restart: unless-stopped
+        privileged: true
+        network_mode: host
+        volumes:
+            - ./config:/config/airconnect
+        environment:
+            - "AIRCAST_VAR=-x /config/airconnect/aircast.xml"
+            - "AIRUPNP_VAR=-x /config/airconnect/airupnp.xml"
