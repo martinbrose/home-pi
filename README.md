@@ -4,7 +4,8 @@
 
 ## Features
 
-**Home Assistant**: Installs the Home Assistant Docker configuration so you can manage smart devices across your home network. Use Home Assistant to automate your home!
+**Home Assistant**: Installs the Home Assistant Docker configuration so you can manage smart devices across your home network. Use Home Assistant to automate your home!<br>
+Supports the install of either the normal Home Assistant Core or the powerful Home Assistant Supervisor (formerly referred to as Hassio / Hass.io). The later is only recommended for experienced users.
 
  ![Home Assistant on the Home Pi](/images/home-assistant.png)
 
