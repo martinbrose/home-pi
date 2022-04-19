@@ -1,6 +1,6 @@
 # Home Pi
 
-**A Raspberry Pi config for home automation**
+**A Raspberry Pi config for home automation with Home Assistant**
 
 ## Features
 
